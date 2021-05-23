@@ -42,7 +42,7 @@ function command({player, arg}) {
 
     let toSend = [
         boardBefore,
-        ">>> " + generated.message + ` \`Score: ${player.areaScore.toLocaleString()} (+ ${scoreEarned.toLocaleString()})\``
+        ">>> " + generated.message + ` \`Score: ${player.areaScore.toLocaleString()} (+ ${scoreEarned.toLocaleString()})\`\nGoal: ${playingArea.mergeData.goal}`
     ];
 
     // gameover

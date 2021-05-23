@@ -20,7 +20,7 @@ const shopItems = [
         name: "Width",
         description: "Increase board's width by 1. *this will reset your board",
         command: ["width", "w"],
-        cost: (lv) => Math.floor(100**(lv-3)*1e4),
+        cost: (lv) => Math.floor(50**(lv-3)*1e4),
         maxLevel: 5
     },
     {
@@ -28,7 +28,7 @@ const shopItems = [
         name: "Height",
         description: "Increase board's height by 1. *this will reset your board",
         command: ["height", "h"],
-        cost: (lv) => Math.floor(100**(lv-3)*1e5),
+        cost: (lv) => Math.floor(30**(lv-3)*1e5),
         maxLevel: 5
     }
 ];
