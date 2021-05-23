@@ -1,3 +1,7 @@
+token.json
+UserData/
+UserDataBackup/
+
 # Logs
 logs
 *.log
