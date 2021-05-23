@@ -47,6 +47,7 @@ let recipe = plainArea.mergeMap;
 const m = material;
 addRecipe(m.Log, m.Rock, m.StoneAxe);
 addRecipe(m.Log, m.StoneAxe, m.WoodenPickaxe);
+addRecipe(m.Sticks, m.StoneAxe, m.WoodenPickaxe);
 addRecipe(m.WoodenPickaxe, m.Rock, m.Cobblestone);
 addRecipe(m.Cobblestone, m.Cobblestone, m.StoneKit);
 addRecipe(m.StoneKit, m.Log, m.Mine);
