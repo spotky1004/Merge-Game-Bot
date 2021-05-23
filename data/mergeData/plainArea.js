@@ -51,6 +51,7 @@ addRecipe(m.Sticks, m.StoneAxe, m.WoodenPickaxe);
 addRecipe(m.WoodenPickaxe, m.Rock, m.Cobblestone);
 addRecipe(m.Cobblestone, m.Cobblestone, m.StoneKit);
 addRecipe(m.StoneKit, m.Log, m.Mine);
+addRecipe(m.StoneKit, m.Sticks, m.Mine);
 addRecipe(m.Rock, m.Rock, m.Stones);
 addRecipe(m.Stones, m.Stones, m.StonePile);
 addRecipe(m.StonePile, m.StonePile, m.Wall);
@@ -60,6 +61,7 @@ addRecipe(m.Sticks, m.Rock, m.Fire);
 addRecipe(m.Mine, m.House, m.IronOre);
 addRecipe(m.IronOre, m.Fire, m.IronBar);
 addRecipe(m.IronBar, m.Log, m.IronPickaxe);
+addRecipe(m.IronBar, m.Sticks, m.IronPickaxe);
 addRecipe(m.IronPickaxe, m.Mine, m.Diamond);
 
 function addRecipe(meterial1, meterial2, resultItem) {
