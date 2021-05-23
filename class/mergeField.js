@@ -93,7 +93,7 @@ class MergeField {
         this.player.removeUsed = 0;
         this.player.undoField = {};
         
-        this.player.beatScore = Math.max(beatScore, this.player.areaScore);
+        this.player.bestScore = Math.max(this.player.bestScore, this.player.areaScore);
 
         this.field = {};
         this.player.areaScore = 0;
