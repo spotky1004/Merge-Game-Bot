@@ -22,11 +22,6 @@ const prefix = "-"
 bot.on("message", async (msg) => {
   // message work condition
   if (
-    (
-      msg.channel.id !== "844901937023025172" &&
-      msg.guild.id !== "697389133361971312" &&
-      msg.guild.id !== "845517416334229554"
-    ) ||  // if channel isn't beta channel (#beta-channel)
     msg.author.bot ||  // return if author of message is bot
     msg.content.length > 1000 || // spam
     !msg.content.startsWith(prefix) // return if start of message isn't prefix

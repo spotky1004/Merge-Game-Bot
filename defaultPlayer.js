@@ -1,8 +1,9 @@
 const defaultPlayer = {
-    // resource
+    // player data
     gold: 0,
+    beatScore: 0,
 
-    // area datas
+    // area data
     playingArea: "plainArea",
     areaScore: 0,
     undoUsed: 0,
