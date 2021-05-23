@@ -2,6 +2,7 @@ const defaultPlayer = {
     // player data
     gold: 0,
     bestScore: 0,
+    bestField: null,
 
     // area data
     playingArea: "plainArea",

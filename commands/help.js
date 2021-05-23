@@ -13,6 +13,7 @@ function command({}) {
     addHelpField(fieldsToAdd, "remove (x) (y)", "Remove a item on the board.", true);
     addHelpField(fieldsToAdd, "undo", "Undo one turn", true);
     addHelpField(fieldsToAdd, "shop (upgrade)", "Open the Upgrade Shop / Buy Upgrade");
+    addHelpField(fieldsToAdd, "best", "Show your best record");
 
     msg.addFields(...fieldsToAdd);
         

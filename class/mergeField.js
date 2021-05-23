@@ -89,12 +89,20 @@ class MergeField {
         const tmpScore = this.player.areaScore;
         this.player.gold += this.player.areaScore;
 
+        if (this.player.bestScore < this.player.areaScore) {
+            this.player.bestScore = this.player.areaScore;
+            const tmpField = {
+                x: this.size.x,
+                y: this.size.y,
+                field: {...this.field}
+            };
+            this.player.bestField = tmpField;
+        }
+
         this.player.undoUsed = 0;
         this.player.isUndoAvaible = false;
         this.player.removeUsed = 0;
         this.player.undoField = {};
-        
-        this.player.bestScore = Math.max(this.player.bestScore, this.player.areaScore);
 
         this.field = {};
         this.player.areaScore = 0;
