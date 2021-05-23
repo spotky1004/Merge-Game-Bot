@@ -12,7 +12,7 @@ function command({}) {
     addHelpField(fieldsToAdd, "move (direction)", "Move items on the board.\nYou can use `up/down/left/right` or `u/d/l/r`");
     addHelpField(fieldsToAdd, "remove (x) (y)", "Remove a item on the board.", true);
     addHelpField(fieldsToAdd, "undo", "Undo one turn", true);
-    addHelpField(fieldsToAdd, "shop", "Open the Upgrade Shop");
+    addHelpField(fieldsToAdd, "shop (upgrade)", "Open the Upgrade Shop / Buy Upgrade");
 
     msg.addFields(...fieldsToAdd);
         

@@ -40,10 +40,10 @@ bot.on("message", async (msg) => {
   if (typeof commamd === "undefined") return; // return if user entered undefined command
 
   // check player
-  let player = playerCheck(userId);
   if (typeof sessionData[userId] === "undefined") sessionData[userId] = {};
   if (sessionData[userId].waiting) return;
   sessionData[userId].waiting = true;
+  let player = playerCheck(userId);
 
   const playingArea = player.playingArea;
     
@@ -82,11 +82,11 @@ bot.on("message", async (msg) => {
     if (Array.isArray(cmdOut.toEdit)) {
       for (let i = 0, l = cmdOut.toEdit.length; i < l; i++) {
         if (typeof messageSent[i] === "undefined") continue;
-        messageSent[i].edit(cmdOut.toEdit[i], { timeout: editTimeout });
+        await messageSent[i].edit(cmdOut.toEdit[i], { timeout: editTimeout });
       }
     } else {
       if (typeof messageSent !== "undefined") {
-        messageSent.edit(cmdOut.toEdit, { timeout: editTimeout });
+        await messageSent.edit(cmdOut.toEdit, { timeout: editTimeout });
       }
     }
   }
@@ -97,7 +97,7 @@ bot.on("message", async (msg) => {
   player[playingArea] = player[playingArea].toSaveForm();
 
   // save player's data
-  fs.writeFileSync(`./UserData/${userId}.json`, JSON.stringify(player));
+  await fs.writeFileSync(`./UserData/${userId}.json`, JSON.stringify(player));
 
   sessionData[userId].waiting = false;
 });

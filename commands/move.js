@@ -46,7 +46,7 @@ function command({player, arg}) {
     ];
 
     // gameover
-    if (generated.position === -1) playingArea.reset();
+    if (generated.position === -1) toSend.push(playingArea.reset());
 
     return {
         toSend: toSend,

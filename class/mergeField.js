@@ -86,6 +86,7 @@ class MergeField {
     }
 
     reset() {
+        const tmpScore = this.player.areaScore;
         this.player.gold += this.player.areaScore;
 
         this.player.undoUsed = 0;
@@ -98,7 +99,7 @@ class MergeField {
         this.field = {};
         this.player.areaScore = 0;
 
-        return `\n${emoji.gold.toLocaleString()} \`${this.player.gold.toLocaleString()} (+${this.player.areaScore.toLocaleString()})\``
+        return `\n${emoji.gold.toLocaleString()} \`${this.player.gold.toLocaleString()} (+${tmpScore.toLocaleString()})\``
     }
 
     toMessageForm(point) {
