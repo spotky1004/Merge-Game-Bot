@@ -1,15 +1,21 @@
 "use strict";
 
-let windowBlured = false;
-window.blur = () => windowBlured = true;
-window.focus = () => windowBlured = false;
-
 // for who want to use time more effective...
 
 // Number related: romanize, timeNotation
 // Etc.          : timer, copyObj
 
 const Spl = {
+    cutNumber: (number, min=-1e308, max=1e308) => {
+      number = Number(number);
+      if (!isNaN(number)) {
+        if (number < min) number = min;
+        if (number > max) number = max;
+        return number;
+      } else {
+        return min;
+      }
+    },
     timer: ms => new Promise(
         res => {
             setTimeout(res, ms);
@@ -61,3 +67,5 @@ const Spl = {
       return cObject;
     }
 }
+
+module.exports = Spl;

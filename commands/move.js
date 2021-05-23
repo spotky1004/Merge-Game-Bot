@@ -2,7 +2,7 @@ function command({player, arg}) {
     if (arg.length < 1) return;
 
     let direction = {x: 0, y: 0};
-    let workOrder = Array.from({length: player.areaHeight}, (_, y) => Array.from({length: player.areaWidth}, (_, x) => y*player.areaWidth+x));
+    let workOrder = Array.from({length: player.shop_mapHeight}, (_, y) => Array.from({length: player.shop_mapWidth}, (_, x) => y*player.shop_mapWidth+x));
     switch (arg[0]) {
         case "up": case "u":
             direction.y = 1;
@@ -13,26 +13,43 @@ function command({player, arg}) {
             break;
         case "right": case "r":
             direction.x = 1;
-            workOrder.map(e => e.reverse())
+            workOrder.map(e => e.reverse());
             break;
         case "left": case "l":
             direction.x = -1;
             break;
     }
 
+    if (direction.x === 0 && direction.y === 0) {
+        return {
+            toSend: "Invaild direction!"
+        }
+    }
+
     const playingArea = player[player.playingArea];
+
+    // undo
+    player.undoField = {...playingArea.field};
+    player.isUndoAvaible = true;
+
+    // move & generate
     const boardBefore = playingArea.toMessageForm();
 
-    playingArea.push(direction.x, direction.y, workOrder.flat());
+    const scoreEarned = playingArea.push(direction.x, direction.y, workOrder.flat());
 
     const generated = playingArea.generate();
     const boardAfter = playingArea.toMessageForm(generated.position);
 
+    let toSend = [
+        boardBefore,
+        ">>> " + generated.message + ` \`Score: ${player.areaScore.toLocaleString()} (+ ${scoreEarned.toLocaleString()})\``
+    ];
+
+    // gameover
+    if (generated.position === -1) playingArea.reset();
+
     return {
-        toSend: [
-            boardBefore,
-            "> " + generated.message
-        ],
+        toSend: toSend,
         toEdit: [
             boardAfter
         ],

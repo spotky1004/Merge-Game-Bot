@@ -1,5 +1,5 @@
 const emoji = {
-    coin: "<a:Coin:845524308817346591>",
+    gold: "<a:Coin:845524308817346591>",
     empty: "<:empty:845575303166427167>",
     point: "<:Point:845655039979683850>",
     number: [

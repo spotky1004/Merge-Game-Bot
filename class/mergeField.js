@@ -1,14 +1,18 @@
 class MergeField {
-    constructor (field={}, size={x: 4, y: 4}, mergeData={}) {
+    constructor (field={}, size={x: 4, y: 4}, mergeData={}, player) {
         this.field = {...field};
         this.score = 0;
         this.size = size;
         this.emojiSet = mergeData.emojiSet;
         this.mergeMap = mergeData.mergeMap;
+
+        this.mergeData = mergeData;
+        this.player = player;
     }
 
     push(dx=0, dy=0, order) {
         dy *= -1;
+        let totalScoreEarned = 0;
 
         for (let flatPos of order) {
             if (typeof this.field[flatPos] === "undefined") continue;
@@ -39,7 +43,15 @@ class MergeField {
                     // merge
                     for (const id in this.mergeMap[this.field[flatPos]]) {
                         if (Number(id) === this.field[newFlatPos]) {
-                            this.field[newFlatPos] = this.mergeMap[this.field[flatPos]][id];
+                            const mergeResult = this.mergeMap[this.field[flatPos]][id];
+                            this.field[newFlatPos] = mergeResult;
+
+                            const scoreTable = this.mergeData.scoreTable;
+                            if (typeof this.mergeData.scoreTable !== "undefined") {
+                                const scoreEarned = scoreTable[this.mergeData.scoreLevel[mergeResult]] ?? 0;
+                                this.player.areaScore += scoreEarned;
+                                totalScoreEarned += scoreEarned;
+                            }
                             delete this.field[flatPos];
                             break;
                         }
@@ -48,7 +60,7 @@ class MergeField {
             }
         }
 
-        return this;
+        return totalScoreEarned;
     }
 
     generate() {
@@ -71,6 +83,20 @@ class MergeField {
         };
 
         return output;
+    }
+
+    reset() {
+        this.player.gold += this.player.areaScore;
+
+        this.player.undoUsed = 0;
+        this.player.isUndoAvaible = false;
+        this.player.removeUsed = 0;
+        this.player.undoField = {};
+
+        this.field = {};
+        this.player.areaScore = 0;
+
+        return `\n${emoji.gold.toLocaleString()} \`${this.player.gold.toLocaleString()} (+${this.player.areaScore.toLocaleString()})\``
     }
 
     toMessageForm(point) {
