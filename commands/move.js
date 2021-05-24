@@ -53,7 +53,7 @@ function command({player, arg}) {
         toEdit: [
             boardAfter
         ],
-        editTime: 500
+        editTime: 2000-player.shop_speed*200
     };
 }
 

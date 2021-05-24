@@ -21,6 +21,7 @@ const defaultPlayer = {
     shop_undo: 0,
     shop_mapWidth: 3,
     shop_mapHeight: 3,
+    shop_speed: 0
 };
 
 module.exports = defaultPlayer;

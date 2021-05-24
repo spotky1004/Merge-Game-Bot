@@ -24,10 +24,10 @@ function command({player, arg}) {
         if (item !== null) {
             const itemCost = item.cost(player[item.key]);
             if (player.gold >= itemCost && player[item.key] < item.maxLevel) {
+                player.gold -= itemCost;
                 msg
                 .setColor("#8bf069")
                 .setTitle(`Upgrade Shop  ·  ${player.gold.toLocaleString()} ${emoji.gold}`);
-                player.gold -= itemCost;
                 if (item.name === "Width" || item.name === "Height") {
                     player[player.playingArea].reset();
                 }

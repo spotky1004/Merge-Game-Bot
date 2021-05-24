@@ -4,16 +4,16 @@ const shopItems = [
         name: "Remove",
         description: "Allows you Remove one item on the board.", 
         command: ["remove", "r"],
-        cost: (lv) => Math.floor((lv**2 + 1)*(500 + 100*lv)),
-        maxLevel: 49
+        cost: (lv) => Math.floor((lv**3 + 1)*(500 + 500*lv)),
+        maxLevel: 9
     },
     {
         key: "shop_undo",
         name: "Undo",
         description: "Allows you Undo one turn.",
         command: ["undo", "u"],
-        cost: (lv) => Math.floor((lv+1)*10000),
-        maxLevel: 49
+        cost: (lv) => Math.floor((lv+1)**2*(1000+lv*500)),
+        maxLevel: 9
     },
     {
         key: "shop_mapWidth",
@@ -30,6 +30,14 @@ const shopItems = [
         command: ["height", "h"],
         cost: (lv) => Math.floor(30**(lv-3)*1e5),
         maxLevel: 5
+    },
+    {
+        key: "shop_speed",
+        name: "Speed",
+        description: "Move will be faster by 0.2sec (Start: 2sec)",
+        command: ["speed", "s"],
+        cost: (lv) => Math.floor((1.4**lv*(1000*(lv+1)**1.4))/1000)*1000,
+        maxLevel: 7
     }
 ];
 

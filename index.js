@@ -78,15 +78,16 @@ bot.on("message", async (msg) => {
 
   // editMessage
   const editTimeout = cmdOut.editTime ?? 750;
+  await Spl.timer(editTimeout);
   if (typeof cmdOut.toEdit !== "undefined") {
     if (Array.isArray(cmdOut.toEdit)) {
       for (let i = 0, l = cmdOut.toEdit.length; i < l; i++) {
         if (typeof messageSent[i] === "undefined") continue;
-        await messageSent[i].edit(cmdOut.toEdit[i], { timeout: editTimeout });
+        await messageSent[i].edit(cmdOut.toEdit[i]);
       }
     } else {
       if (typeof messageSent !== "undefined") {
-        await messageSent.edit(cmdOut.toEdit, { timeout: editTimeout });
+        await messageSent.edit(cmdOut.toEdit);
       }
     }
   }
@@ -116,6 +117,7 @@ bot.on("ready", () => {
 
 // functions
 const defaultPlayer = require("./defaultPlayer");
+const Spl = require("./library/spotkyLib");
 function playerCheck(id) {
   const path = `./userData/${id}.json`;
 
